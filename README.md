@@ -117,57 +117,84 @@ Vgg16 basit bir ağ modeli olup öncesindeki modellerden en önemli farkı evri�
 	
 Şekil 15: VGG16 ağ mimarisi
  
+![image](https://user-images.githubusercontent.com/59260491/176998827-f463298a-328d-48fa-a938-02f01306dd06.png)
+	
 Şekil 16: VGG16
+	
 VGG16 modelinde eğitimde imagenet ağırlıkları kullanılmıştır. Eğitim 120 epoch olarak gerçekleştirilmiştir. Eğitim sonunda elde edilen f1-score değeri 0.86’dır. Train ve test olarak ayrılan veri seti eğitimden önce x_train, y_train, x_test, y_test olarak ayrılmıştır ve eğitim bu şekilde gerçekleştirilmiştir. Test accuracy değeri 0.75 ve test loss değeri 1.22 olarak elde edilmiştir. Eğitim sonucunda gözlemlemek üzere oluşturulan grafikler ve confusion matrix verilerine göz atalım.
-  
+	
+  ![image](https://user-images.githubusercontent.com/59260491/176998850-57d8f824-1e78-4fad-88b8-3547aab0b97c.png)
+	
 Şekil 17: 120 epoch sonucu elde edilen değerler
+	
 Grafiklerde görüldüğü üzere validation loss değeri artmıştır. Bunun sebebi eğitimin overfittinge uğraması olarak düşünülmektedir. Önceki eğitimlerde de bu sorunla karşılaşıldığı için epoch sayısının 10 – 15 arasında olmasının en uygun aralık olabileceği düşünüldü. Gelecek hafta epoch sayısı azaltılabildiği kadar azaltılacaktır ve veri setinde uygun görülen bir düzenlemeye gidilecektir.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998866-43509d9b-f3bb-4f89-863f-4c2d6f1bc57d.png)
+	
 Şekil 18: VGG16 eğitiminden elde edilen confusion matrix
+	
 Confusion matrix verilerine bakıldığında aslında güzel sonuçlar olduğu görülmektedir. Fakat test verilerinde karşılaşılan sınıflandırma hataları tolere edilebilecek bir seviyede değildir. Bu sebepten dolayı modeli iyileştirme çalışmalarına devam edilecek ve validation loss değerinin artması problemine çözüm bulunacaktır.
 
-7.	Hafta: Bu zamana kadar yapılan tüm eğitimler karşılaştırıldığında vgg16 modelinin eğitiminin mobilenet eğitimden daha iyi olduğu görülmüştür. Veri setinin test bölümünden kendi seçtiğimiz veriler bir liste yardımı ile tahmin edildi. Eğitim sonucunda elde edilen değerlerin yeterliliği değerlendirildi. Overfitting problemi yaşanmaması için eğitim 15 epoch’da tamamlandı. Elde edilen test accuracy değeri 0.754677.
+7.Hafta: Bu zamana kadar yapılan tüm eğitimler karşılaştırıldığında vgg16 modelinin eğitiminin mobilenet eğitimden daha iyi olduğu görülmüştür. Veri setinin test bölümünden kendi seçtiğimiz veriler bir liste yardımı ile tahmin edildi. Eğitim sonucunda elde edilen değerlerin yeterliliği değerlendirildi. Overfitting problemi yaşanmaması için eğitim 15 epoch’da tamamlandı. Elde edilen test accuracy değeri 0.754677.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998875-dd328e56-0ff3-4092-bcfb-ba6397d56282.png)
+	
 Şekil 19:VGG16 eğitiminden elde edilen confusion matrix
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998882-7b377cdb-f3b6-4d82-aec9-b0be6d060622.png)
+	
 Şekil 20: VGG ile 15 epoch sonucunda elde edilen loss ve accuracy değerleri
 
-8.	Hafta: Projenin donanım aşamasında elimizde bulunan imkanlar dahilinde beş sınıf ile sınıflandırma yapmak ve bunu uygulamak biraz daha karmaşık ve zor olacağından dolayı projedeki sınıf/kategori sayısı üç sınıf ile sınırlandırıldı. Cam, kağıt ve plastik kategorilerinden oluşan üç sınıf ile vgg16 modeli kullanılarak bir eğitim daha gerçekleştirildi. Hatalı sınıflandırmaların azaldığı görüldü. Üç sınıf ile 50 epoch eğitim yapıldı. Elde edilen test accuracy değeri 0.81.
+8.Hafta: Projenin donanım aşamasında elimizde bulunan imkanlar dahilinde beş sınıf ile sınıflandırma yapmak ve bunu uygulamak biraz daha karmaşık ve zor olacağından dolayı projedeki sınıf/kategori sayısı üç sınıf ile sınırlandırıldı. Cam, kağıt ve plastik kategorilerinden oluşan üç sınıf ile vgg16 modeli kullanılarak bir eğitim daha gerçekleştirildi. Hatalı sınıflandırmaların azaldığı görüldü. Üç sınıf ile 50 epoch eğitim yapıldı. Elde edilen test accuracy değeri 0.81.
  
+![image](https://user-images.githubusercontent.com/59260491/176998889-4b55c68a-ed18-4d1d-b7b3-7549f49da7e1.png)
+	
 Şekil 21: Üç sınıflı VGG16 modelinden elde edilen confusion matrix
  
+![image](https://user-images.githubusercontent.com/59260491/176998901-8c42b711-8944-482e-8b26-ea1012be65f4.png)
+	
 Şekil 22: Eğitim sonucunda elde edilen loss ve accuracy değerleri
-9.	Hafta: Overfitting sorununa çözüm bulmak amacıyla araştırmalar yapıldı. Araştırmalar sonucunda bulunan çözümler; cnn katmanlarındaki gizli katman sayısını azaltmak, veri artırma, katmanlarda L1 ve L2 [14] normalizasyon işlemi, dropout katmanı eklemek, learning rate oranını azaltmak. Bulunan bu çözümler aşamalı olarak önceki eğitim dosyalarında denendi. Doğruluk değerleri uygun olan modeller üzerinde inceleme yapıldı ve geliştirilmek üzere tekrar eğitimler gerçekleştirildi. Veri artırma işlemi sonucunda her kategorideki verilerin sayısı yaklaşık olarak iki katına çıkarıldı. Veri setindeki görsellerin renk tonları ile oynanarak ve eksenlerini çevirerek çoğaltma yapıldı. Learning rate oranı azaltılarak eğitimin epoch sayısında arttırma işlemi gerçekleştirildi.
+	
+9.Hafta: Overfitting sorununa çözüm bulmak amacıyla araştırmalar yapıldı. Araştırmalar sonucunda bulunan çözümler; cnn katmanlarındaki gizli katman sayısını azaltmak, veri artırma, katmanlarda L1 ve L2 [14] normalizasyon işlemi, dropout katmanı eklemek, learning rate oranını azaltmak. Bulunan bu çözümler aşamalı olarak önceki eğitim dosyalarında denendi. Doğruluk değerleri uygun olan modeller üzerinde inceleme yapıldı ve geliştirilmek üzere tekrar eğitimler gerçekleştirildi. Veri artırma işlemi sonucunda her kategorideki verilerin sayısı yaklaşık olarak iki katına çıkarıldı. Veri setindeki görsellerin renk tonları ile oynanarak ve eksenlerini çevirerek çoğaltma yapıldı. Learning rate oranı azaltılarak eğitimin epoch sayısında arttırma işlemi gerçekleştirildi.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998907-3ca8df5a-190f-4e04-b77c-31adb82e1f77.png)
+	
 Şekil 23: Veri artırırken özelliklerin değiştirilme oranları verildi
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998912-18c82b4e-824e-4da0-9a92-59365dab2541.png)
+	
 Şekil 24: Hangi verilere işlem uygulanacağı ve nereye kaydedileceği belirtilip artırma işlemi başlatıldı
  
+![image](https://user-images.githubusercontent.com/59260491/176998921-9a433242-a63c-4d38-9997-6970ccffab7f.png)
+	
 Şekil 25: Learning Rate azaltıldığında eğitimin 60 epoch ile durumu
  
+![image](https://user-images.githubusercontent.com/59260491/176998936-95938812-444e-4696-9d88-6d7e75a70e63.png)
+	
 Şekil 26: Elde edilen test doğruluk değerleri
 
 
-10.	Hafta: Veri arttırma yönteminden elde edilen verilerin nasıl daha iyi eğitilebileceğine dair üzerinde düşünüldü. Önceki haftalarda yapılan eğitimler incelendi. Eğitimlere yönelik alınan notlar incelendi ve en iyi sonuç veren eğitimlerin farklı parametreler ile tekrar eğitilmesine karar verildi. Önceki eğitimlerde veri setini train ve test olarak ayırma işlemi el ile seçilerek yapılmıştı. Bu işlem yeni eğitimlere geçilmeden önce python kodu ile gerçekleştirildi. Python kodu ile train ve test olarak ayırılan veri seti yeni eğitimler için hazır hale getirildi.
+10.Hafta: Veri arttırma yönteminden elde edilen verilerin nasıl daha iyi eğitilebileceğine dair üzerinde düşünüldü. Önceki haftalarda yapılan eğitimler incelendi. Eğitimlere yönelik alınan notlar incelendi ve en iyi sonuç veren eğitimlerin farklı parametreler ile tekrar eğitilmesine karar verildi. Önceki eğitimlerde veri setini train ve test olarak ayırma işlemi el ile seçilerek yapılmıştı. Bu işlem yeni eğitimlere geçilmeden önce python kodu ile gerçekleştirildi. Python kodu ile train ve test olarak ayırılan veri seti yeni eğitimler için hazır hale getirildi.
  
+![image](https://user-images.githubusercontent.com/59260491/176998949-a206220d-440d-4659-a720-8f2805d9f624.png)
+	
 Şekil 27: Train ve test olarak ayırma - Python kodu
 
-11.	Hafta: Önceki haftalarda en iyi eğitim sonucunu veren parametreler kullanılarak veri setinin son hali eğitildi. Eğitimde kullanılan verilerin giriş boyutu 224 olarak ayarlandı. VGG16 algoritması imagenet ağırlıkları ile eğitildi. Eğitim birkaç kez tekrarlandı ve 40 epoch değerinin yeterli olacağı düşünüldü. 
+11.Hafta: Önceki haftalarda en iyi eğitim sonucunu veren parametreler kullanılarak veri setinin son hali eğitildi. Eğitimde kullanılan verilerin giriş boyutu 224 olarak ayarlandı. VGG16 algoritması imagenet ağırlıkları ile eğitildi. Eğitim birkaç kez tekrarlandı ve 40 epoch değerinin yeterli olacağı düşünüldü. 
 
-  
+![image](https://user-images.githubusercontent.com/59260491/176998966-e952c998-47e3-45a5-bd59-6d6b5eac4228.png)
+	
 Şekil 28: 40 Epoch sonucu elde edilen eğitim verileri
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998972-4216545f-06df-4b44-8fcb-266635d1022d.png)
+	
 Şekil 29: 40 epoch sonucu elde edilen eğitim verileri
 
 Eğitim sonucunda %90 doğruluk değeri elde edilmiştir. Kayıp değeri ise %26’dır.
 
  
+![image](https://user-images.githubusercontent.com/59260491/176998978-faa08d69-f4a0-4534-b764-e55b77f801b6.png)
+	
 Şekil 30: Loss ve accuracy değerleri
 
 Son olarak confusion matrix’ten elde edilen değerler incelendiğinde kağıt sınıfı için %96, plastik sınıfı için %85 ve cam sınıfı için %88 f1-score değerleri elde edilmiştir. Doğruluk değerleri de yaklaşık olarak bu değerler ile eşdeğerdir.
