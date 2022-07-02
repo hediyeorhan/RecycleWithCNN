@@ -7,9 +7,9 @@
 
 2.	Hafta: Projede kullanılabilecek veriler ile ilgili veri seti araştırılması yapıldı. Kaggle sitesi üzerinden ulaşılan veri seti[4] ile github reposu üzerinden ulaşılan veri seti[5] karşılaştırıldı ve değerlendirildi. Github reposu üzerinden ulaşılan verilerin model eğitimi için daha uygun olduğu düşünüldü ve kullanılacak veri seti olarak bu veriler seçildi. Veri setinin seçilmesinde görsellerin arka plan, çözünürlük gibi özellikleri göz önünde bulunduruldu. Verileri kullanmak için gerekli izinler alındı. Verilerin yeterliliğinin değerlendirilmesi için planlama yapıldı. Kullanılacak veri seti 5 kategoriden oluşmaktadır. Kategoriler cam, karton, metal, plastik ve kâğıt türleridir. Her kategorideki veri sayıları yaklaşık olarak birbirine yakındır, toplamda 2392 adet veri bulunmaktadır. 
 
- <center> ![image](https://user-images.githubusercontent.com/59260491/176998405-1c6d0a2f-2ffc-4a3d-8eb6-54a298ee6c2f.png) </center>
+ ![image](https://user-images.githubusercontent.com/59260491/176998405-1c6d0a2f-2ffc-4a3d-8eb6-54a298ee6c2f.png)
 	
-	<center>Şekil 1 : Kullanılan veri setinden örnekler</center>
+Şekil 1 : Kullanılan veri setinden örnekler
 
 3.Hafta: Elimizde bulunan veri seti ile CNN [6] modeli eğitildi. YOLO [7] ve SSD [8] algoritmalarının etiketleme ve tespit yönünden gerekli olmadığına karar verildi. CNN algoritmalarının sınıflandırma problemine daha uygun olduğuna karar verildi. Veri setini test etmek amaçlı eğitilen model dosyası test verileri ile test edildi. Veri setinin eğitimine başlamadan önce veri seti %80 train  ve %20 test olmak üzere iki parçaya ayrılmıştır. Veri setini bu şekilde ayırmamızın nedeni, eğitim bittikten sonra oluşan model dosyamızın başarısını ölçmektir. Validation verisi ayırılmadı çünkü gerek duyulmadı. Validation verisi sayesinde eğitim sırasında modelin doğruluk değerleri görülebiliyor fakat burada train verisinin daha fazla olması amaçlanmıştır ve veri seti iki parçaya ayrılmıştır. CNN modelinin iterasyon sayısı, katman sayısı gibi değerlerinin değiştirilmesine ve farklı iterasyonlarda model eğitilmesine karar verildi. Şu anki süreçte CNN üzerinden model eğitimine devam edilecektir. Model doğruluk değeri için iyileştirmeler yapılacaktır. Veri setinin eğitim aşamasında Google Colaboratory [9] ortamı kullanılacaktır çünkü Google ücretsiz olarak GPU [10] desteği sağlamaktadır. Bu sayede eğitimler daha hızlı bir şekilde gerçekleşmektedir.
 
@@ -18,6 +18,7 @@
 ![image](https://user-images.githubusercontent.com/59260491/176998458-d018da9a-a338-4cb0-b08f-554f2abdd316.png)
 	
 Şekil 2: Oluşturulan sinir ağı modeli
+	
 Oluşturulan modelde verilerin giriş boyutu (128,128,3) olarak verilmiştir burada 3 değeri rgb renk kodlarından gelmektedir. Veriler siyah beyaz bir yapıda olsaydı 3 yerine 1 kullanılmalıydı. Modelin overfittinge uğramasını engellemek amacıyla Dropout katmanı eklenmiştir. Dropout genelde tam bağlı katmanlarda (fully-connected layer) sonra kullanılır. Dropout kullanılarak fully-connected layerlardaki bağlar koparılır. Böylece node'lar birbiri hakkında daha az bilgiye sahip olur ve bunun doğal sonucu olarak node'lar birbirlerinin ağırlık değişimlerinden daha az etkilenirler. Flatten katmanının görevi basitçe, son ve en önemli katman olan Fully Connected Layer’ın girişindeki verileri hazırlamaktır. Dense katmanında verilen 5 değeri veri setindeki kategori sayısıdır. Son olarak eğitim kısmında callback eklenmiştir bunun sebebi ise eğitim aşamasında istediğimiz accuracy ve loss değerleri alındığında eğitimin durdurulmasını sağlamaktır.
 Modelde kullanılan iki önemli katman da convolutional layer ve pooling layer’dır. Convolutional layer katmanında girdi olarak gelen resim bir filtreden geçirilir. Filtreden geçirilme sonucu oluşan değerler öznitelik haritasını oluşturur. Input olarak elimizde 4x4 lük matris vardır. Belirlenen filtre ise 2x2 boyutundadır. Burada input olarak gelen matrisin tamamında bu filtre gezdirilerek, input üzerinde oluşan her 2x2 matris ile filtre matrisi çarpılarak öznitelik matrisi oluşturulur. Birden fazla filtre olması durumunda bu işlemler her bir filtre için uygulanır. Genel olarak convolutional katmanı ile resimlerdeki sadece gerekli ve önemli olan öznitelikler belirlenir. Farklılık oluşturmayan öznitelikler ise hesaba dahil edilmez.
  
@@ -28,21 +29,25 @@ Modelde kullanılan iki önemli katman da convolutional layer ve pooling layer�
 Convolutional layer’dan sonra ikinci katman pooling layer’dır. Bu katman, CovNet’teki ardışık convolutional katmanları arasına sıklıkla eklenen bir katmandır. Bu katmanın görevi, gösterimin kayma boyutunu ve ağ içindeki parametreleri ve hesaplama sayısını azaltmak içindir. Bu sayede ağdaki uyumsuzluk kontrol edilmiş olur. Bizim burada kullandığımız maxpooling algoritmasıdır. Yine aynı prensipte çalışan average pooling, ve L2-norm pooling algoritmaları da vardır.
  
 ![image](https://user-images.githubusercontent.com/59260491/176998481-ef9b3694-fa7d-45c8-96de-34cec9a052d2.png)
+	
 Şekil 4: MaxPooling
 
 Eğitimler sonucu elde edilen değerleri inceleyelim.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998605-a051c5cd-9c0a-441c-8af2-bb0431ab8a49.png)
+	
 Şekil 5: 500 epoch sonucu elde edilen değerler
 
 Epoch sayısı fazla arttırıldığı zaman modelin overfittinge uğradığı düşünüldü. Bu durumdan emin olmak için 800 epoch ile aynı sinir ağı kullanılarak bir model daha eğitildi.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998615-40d611ed-13fb-4a7d-8d9d-c5b4f0007231.png)
+	
 Şekil 6: 800 epoch sonucu elde edilen değerler
+	
 Grafiklerdeki sonuçlar incelendiğinde 500 epoch ve 800 epoch arasında modeli iyileştirecek derecede bir fark olmadığı görülmüştür. Elde edilen bu sonuçlar doğrultusunda mobilenet algoritması [11] ve vgg algoritması [12] modellerinin kullanılmasına ve sonuçlarının incelenmesine karar verildi.
-5.	Hafta:  Geçen haftaki eğitimler sonucunda fazla epoch sayısının overfittinge sebep olduğu düşünüldü ve bu yüzden epoch sayısı 100 olarak güncellendi. Öncelikli olarak 100 epoch ile bir eğitim gerçekleştirildi. Gerçekleştirilen eğitim sonucunda test loss değeri 1.985 ve test accuracy değeri 0.6860 olarak elde edildi. Şekil 7’te eğitim sonucunda elde edilen confusion matrix [13] verilerini inceleyelim. Confusion matrix makine öğrenimi alanında ve özellikle istatistiksel sınıflandırma probleminde, bir hata matrisi olarak da bilinen bir karışıklık matrisi, tipik olarak denetimli bir öğrenme algoritması olan bir algoritmanın performansının görselleştirilmesine izin veren özel bir tablo düzenidir.
+5.Hafta:  Geçen haftaki eğitimler sonucunda fazla epoch sayısının overfittinge sebep olduğu düşünüldü ve bu yüzden epoch sayısı 100 olarak güncellendi. Öncelikli olarak 100 epoch ile bir eğitim gerçekleştirildi. Gerçekleştirilen eğitim sonucunda test loss değeri 1.985 ve test accuracy değeri 0.6860 olarak elde edildi. Şekil 7’te eğitim sonucunda elde edilen confusion matrix [13] verilerini inceleyelim. Confusion matrix makine öğrenimi alanında ve özellikle istatistiksel sınıflandırma probleminde, bir hata matrisi olarak da bilinen bir karışıklık matrisi, tipik olarak denetimli bir öğrenme algoritması olan bir algoritmanın performansının görselleştirilmesine izin veren özel bir tablo düzenidir.
 
-
+![image](https://user-images.githubusercontent.com/59260491/176998631-10d9e035-e5c0-4978-a903-999d1b238189.png)
  
 Şekil 7: Confusion Matrix verileri
 
@@ -53,36 +58,63 @@ Gerçek Negatifler (TN): Bunlar gerçek değeri 0 ve tahmin ettiğimiz değerin 
 Yanlış Pozitifler (FP): Bunlar gerçek değeri 0 ancak tahmin ettiğimiz değerin 1 olduğu örneklerdir. 
 Yanlış Negatifler (FN): Bunlar gerçek değeri 1 ancak tahmin ettiğimiz değerin 0 olduğu örneklerdir.
   
- Formül 1                                         Formül 2
+![image](https://user-images.githubusercontent.com/59260491/176998646-50ae199b-fce7-4ebb-b503-ca7f986fdf50.png)
+	
+	 Formül 1      
+	
+![image](https://user-images.githubusercontent.com/59260491/176998651-947307f8-605a-47af-b9b4-98db845404d5.png)
+	
+	Formül 2
+	
+![image](https://user-images.githubusercontent.com/59260491/176998655-2a6dbb14-c8b4-4dc8-a983-43905d18ffca.png)
+	
+	Formül 3
+                                   
  
-Formül 3
 Doğruluk (Accuracy) yerine F1 Score değerinin kullanılmasının en temel sebebi eşit dağılmayan veri kümelerinde hatalı bir model seçimi yapmamaktır. Ayrıca sadece False Negative ya da False Positive değil tüm hata maliyetlerini de içerecek bir ölçme metriğine ihtiyaç duyulduğu içinde F1 Score çok önemlidir.
  
+![image](https://user-images.githubusercontent.com/59260491/176998688-fb774f14-c8a5-4ba3-aebf-658abbdf0818.png)
+	
 Şekil 8: 100 epoch sonucu elde edilen değerler
 
 İkinci olarak 80 epoch ile bir eğitim daha gerçekleştirildi. Bu eğitimde callback yerine earlystop fonksiyonu kullandıldı. EarlyStop ile eğitim 25 epoch sonucunda sonlandı. Test loss değeri 1.10 ve test accuracy değeri 0.65 olarak elde edildi. Değerlerden farkedileceği üzere 100 epoch ve 25 epoch arasında da çok fazla bir fark olduğu görülmemiştir. 
  
+
+![image](https://user-images.githubusercontent.com/59260491/176998699-8a497cac-880e-486b-813d-e4fa5e831c78.png)
+
 Şekil 9: 25 epoch sonucu elde edilen değerler
+	
 Üçüncü olarak mobilenet modeli kullanılarak bir eğitim gerçekleştirilmiştir. 
- 
+
+![image](https://user-images.githubusercontent.com/59260491/176998713-b69bf7fd-4ae7-4eed-8f0d-434ffdf3a4f2.png)
+	
 Şekil 10: MobileNet yapısı
  
+![image](https://user-images.githubusercontent.com/59260491/176998723-0b747802-d75d-4f6a-8f9a-68fff17de9b6.png)
+	
 Şekil 11: MobileNet ağ mimarisi
+	
 120 epoch olarak tasarlanan modele earlystop eklenmiştir. Değerler stabil bir hale geldiğinde eğitim 77 epoch’da durdurulmuştur. Test accuracy değeri 0.8752 , F1-Score değeri 0.8876, Recall değeri 0.8730 olarak elde edilmiştir.
 
- 
+![image](https://user-images.githubusercontent.com/59260491/176998745-88aa9838-7cac-43b3-b3a8-a29e2d2ad21f.png)
+	
 Şekil 12: MobileNet kullanılarak oluşturulan model
 
-   
+ ![image](https://user-images.githubusercontent.com/59260491/176998759-772ff30c-02b0-46b5-988f-305bc200acd8.png)
+	
 Şekil 13: MobileNet eğitimi sonucunda elde edilen değerler
+	
 Şekil 13’de confusion matrix sonucunda elde edilen veriler incelendiğinde f1-score değerinin gayet başarılı sonuçlar verdiği görülmüştür. Tablonun üst kısmında görünen iki boyutlu matrix incelendiğinde köşegenlerdeki değerler (79, 84, 71, 117, 70) test verilerindeki doğru tahminleri göstermektedir. Sonuçlar önceki eğitimlere göre iyi denilebilecek bir derecededir.
 
- 
-Şekil 14: MobileNet eğitimden elde edilen confusion matrix               
-6.	Hafta:  Önceki haftalarda mobilenet algoritmasından sonraki hedef vgg16 algoritması ile eğitim yapmaktı. Bu hafta vgg16 modelini kullanılarak bir eğitim gerçekleştirildi.
+ ![image](https://user-images.githubusercontent.com/59260491/176998776-a5f4f2ba-1de7-4167-893f-dfe47a1cf229.png)
+	
+Şekil 14: MobileNet eğitimden elde edilen confusion matrix        
+	
+6.Hafta:  Önceki haftalarda mobilenet algoritmasından sonraki hedef vgg16 algoritması ile eğitim yapmaktı. Bu hafta vgg16 modelini kullanılarak bir eğitim gerçekleştirildi.
 Vgg16 basit bir ağ modeli olup öncesindeki modellerden en önemli farkı evrişim katmanlarının 2’li ya da 3’lü kullanılmasıdır. Tam bağlantı (FC) katmanında 7x7x512=4096 nöronlu bir öznitelik vektörüne dönüştürülür. İki FC katmanı çıkışında 1000 sınıflı softmax başarımı hesaplanır. 
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176998792-fff8eff2-04f1-4a4b-bbe6-8ad91a5ba9df.png)
+	
 Şekil 15: VGG16 ağ mimarisi
  
 Şekil 16: VGG16
