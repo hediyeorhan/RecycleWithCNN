@@ -4,13 +4,13 @@
  <h2> PROJENİN YAPIM AŞAMALARI, KARŞILAŞILAN SORUNLAR VE İZLENİLEN YOLLAR </h2>
  <h5> Okulda proje dersimiz kapsamında geliştirdiğim projemin yapımı esnasında izlenilen yollar ve planlardan bahsedilecektir. <h5>
 
-Projede kullanılabilecek veriler ile ilgili veri seti araştırılması yapıldı. Kaggle sitesi üzerinden ulaşılan veri seti[4] ile github reposu üzerinden ulaşılan veri seti[5] karşılaştırıldı ve değerlendirildi. Github reposu üzerinden ulaşılan verilerin model eğitimi için daha uygun olduğu düşünüldü ve kullanılacak veri seti olarak bu veriler seçildi. Veri setinin seçilmesinde görsellerin arka plan, çözünürlük gibi özellikleri göz önünde bulunduruldu. Verileri kullanmak için gerekli izinler alındı. Verilerin yeterliliğinin değerlendirilmesi için planlama yapıldı. Kullanılacak veri seti 5 kategoriden oluşmaktadır. Kategoriler cam, karton, metal, plastik ve kâğıt türleridir. Her kategorideki veri sayıları yaklaşık olarak birbirine yakındır, toplamda 2392 adet veri bulunmaktadır. 
+Projede kullanılabilecek veriler ile ilgili veri seti araştırılması yapıldı. Kaggle sitesi üzerinden ulaşılan veri seti ile github reposu üzerinden ulaşılan veri seti karşılaştırıldı ve değerlendirildi. Github reposu üzerinden ulaşılan verilerin model eğitimi için daha uygun olduğu düşünüldü ve kullanılacak veri seti olarak bu veriler seçildi. Veri setinin seçilmesinde görsellerin arka plan, çözünürlük gibi özellikleri göz önünde bulunduruldu. Verileri kullanmak için gerekli izinler alındı. Verilerin yeterliliğinin değerlendirilmesi için planlama yapıldı. Kullanılacak veri seti 5 kategoriden oluşmaktadır. Kategoriler cam, karton, metal, plastik ve kâğıt türleridir. Her kategorideki veri sayıları yaklaşık olarak birbirine yakındır, toplamda 2392 adet veri bulunmaktadır. 
 
  ![image](https://user-images.githubusercontent.com/59260491/176998405-1c6d0a2f-2ffc-4a3d-8eb6-54a298ee6c2f.png)
 	
 Şekil 1 : Kullanılan veri setinden örnekler
 
-Elimizde bulunan veri seti ile CNN [6] modeli eğitildi. YOLO [7] ve SSD [8] algoritmalarının etiketleme ve tespit yönünden gerekli olmadığına karar verildi. CNN algoritmalarının sınıflandırma problemine daha uygun olduğuna karar verildi. Veri setini test etmek amaçlı eğitilen model dosyası test verileri ile test edildi. Veri setinin eğitimine başlamadan önce veri seti %80 train  ve %20 test olmak üzere iki parçaya ayrılmıştır. Veri setini bu şekilde ayırmamızın nedeni, eğitim bittikten sonra oluşan model dosyamızın başarısını ölçmektir. Validation verisi ayırılmadı çünkü gerek duyulmadı. Validation verisi sayesinde eğitim sırasında modelin doğruluk değerleri görülebiliyor fakat burada train verisinin daha fazla olması amaçlanmıştır ve veri seti iki parçaya ayrılmıştır. CNN modelinin iterasyon sayısı, katman sayısı gibi değerlerinin değiştirilmesine ve farklı iterasyonlarda model eğitilmesine karar verildi. Şu anki süreçte CNN üzerinden model eğitimine devam edilecektir. Model doğruluk değeri için iyileştirmeler yapılacaktır. Veri setinin eğitim aşamasında Google Colaboratory [9] ortamı kullanılacaktır çünkü Google ücretsiz olarak GPU [10] desteği sağlamaktadır. Bu sayede eğitimler daha hızlı bir şekilde gerçekleşmektedir.
+Elimizde bulunan veri seti ile CNN modeli eğitildi. YOLO  ve SSD algoritmalarının etiketleme ve tespit yönünden gerekli olmadığına karar verildi. CNN algoritmalarının sınıflandırma problemine daha uygun olduğuna karar verildi. Veri setini test etmek amaçlı eğitilen model dosyası test verileri ile test edildi. Veri setinin eğitimine başlamadan önce veri seti %80 train  ve %20 test olmak üzere iki parçaya ayrılmıştır. Veri setini bu şekilde ayırmamızın nedeni, eğitim bittikten sonra oluşan model dosyamızın başarısını ölçmektir. Validation verisi ayırılmadı çünkü gerek duyulmadı. Validation verisi sayesinde eğitim sırasında modelin doğruluk değerleri görülebiliyor fakat burada train verisinin daha fazla olması amaçlanmıştır ve veri seti iki parçaya ayrılmıştır. CNN modelinin iterasyon sayısı, katman sayısı gibi değerlerinin değiştirilmesine ve farklı iterasyonlarda model eğitilmesine karar verildi. Şu anki süreçte CNN üzerinden model eğitimine devam edilecektir. Model doğruluk değeri için iyileştirmeler yapılacaktır. Veri setinin eğitim aşamasında Google Colaboratory  ortamı kullanılacaktır çünkü Google ücretsiz olarak GPU desteği sağlamaktadır. Bu sayede eğitimler daha hızlı bir şekilde gerçekleşmektedir.
 
 Önceki planlananlar doğrultusunda bir cnn modeli oluşturuldu. Epoch sayısı ilk eğitimde 500 olarak belirlendi. Şekil 2’de oluşturulan modelin katmanlarını inceleyelim.
 
@@ -43,9 +43,9 @@ Epoch sayısı fazla arttırıldığı zaman modelin overfittinge uğradığı d
 	
 Şekil 6: 800 epoch sonucu elde edilen değerler
 	
-Grafiklerdeki sonuçlar incelendiğinde 500 epoch ve 800 epoch arasında modeli iyileştirecek derecede bir fark olmadığı görülmüştür. Elde edilen bu sonuçlar doğrultusunda mobilenet algoritması [11] ve vgg algoritması [12] modellerinin kullanılmasına ve sonuçlarının incelenmesine karar verildi.
+Grafiklerdeki sonuçlar incelendiğinde 500 epoch ve 800 epoch arasında modeli iyileştirecek derecede bir fark olmadığı görülmüştür. Elde edilen bu sonuçlar doğrultusunda mobilenet algoritması  ve vgg algoritması modellerinin kullanılmasına ve sonuçlarının incelenmesine karar verildi.
 	
-Son eğitimler sonucunda fazla epoch sayısının overfittinge sebep olduğu düşünüldü ve bu yüzden epoch sayısı 100 olarak güncellendi. Öncelikli olarak 100 epoch ile bir eğitim gerçekleştirildi. Gerçekleştirilen eğitim sonucunda test loss değeri 1.985 ve test accuracy değeri 0.6860 olarak elde edildi. Şekil 7’te eğitim sonucunda elde edilen confusion matrix [13] verilerini inceleyelim. Confusion matrix makine öğrenimi alanında ve özellikle istatistiksel sınıflandırma probleminde, bir hata matrisi olarak da bilinen bir karışıklık matrisi, tipik olarak denetimli bir öğrenme algoritması olan bir algoritmanın performansının görselleştirilmesine izin veren özel bir tablo düzenidir.
+Son eğitimler sonucunda fazla epoch sayısının overfittinge sebep olduğu düşünüldü ve bu yüzden epoch sayısı 100 olarak güncellendi. Öncelikli olarak 100 epoch ile bir eğitim gerçekleştirildi. Gerçekleştirilen eğitim sonucunda test loss değeri 1.985 ve test accuracy değeri 0.6860 olarak elde edildi. Şekil 7’te eğitim sonucunda elde edilen confusion matrix  verilerini inceleyelim. Confusion matrix makine öğrenimi alanında ve özellikle istatistiksel sınıflandırma probleminde, bir hata matrisi olarak da bilinen bir karışıklık matrisi, tipik olarak denetimli bir öğrenme algoritması olan bir algoritmanın performansının görselleştirilmesine izin veren özel bir tablo düzenidir.
 
 ![image](https://user-images.githubusercontent.com/59260491/176998631-10d9e035-e5c0-4978-a903-999d1b238189.png)
  
@@ -155,7 +155,7 @@ Projenin donanım aşamasında elimizde bulunan imkanlar dahilinde beş sınıf 
 	
 Şekil 22: Eğitim sonucunda elde edilen loss ve accuracy değerleri
 	
-Overfitting sorununa çözüm bulmak amacıyla araştırmalar yapıldı. Araştırmalar sonucunda bulunan çözümler; cnn katmanlarındaki gizli katman sayısını azaltmak, veri artırma, katmanlarda L1 ve L2 [14] normalizasyon işlemi, dropout katmanı eklemek, learning rate oranını azaltmak. Bulunan bu çözümler aşamalı olarak önceki eğitim dosyalarında denendi. Doğruluk değerleri uygun olan modeller üzerinde inceleme yapıldı ve geliştirilmek üzere tekrar eğitimler gerçekleştirildi. Veri artırma işlemi sonucunda her kategorideki verilerin sayısı yaklaşık olarak iki katına çıkarıldı. Veri setindeki görsellerin renk tonları ile oynanarak ve eksenlerini çevirerek çoğaltma yapıldı. Learning rate oranı azaltılarak eğitimin epoch sayısında arttırma işlemi gerçekleştirildi.
+Overfitting sorununa çözüm bulmak amacıyla araştırmalar yapıldı. Araştırmalar sonucunda bulunan çözümler; cnn katmanlarındaki gizli katman sayısını azaltmak, veri artırma, katmanlarda L1 ve L2  normalizasyon işlemi, dropout katmanı eklemek, learning rate oranını azaltmak. Bulunan bu çözümler aşamalı olarak önceki eğitim dosyalarında denendi. Doğruluk değerleri uygun olan modeller üzerinde inceleme yapıldı ve geliştirilmek üzere tekrar eğitimler gerçekleştirildi. Veri artırma işlemi sonucunda her kategorideki verilerin sayısı yaklaşık olarak iki katına çıkarıldı. Veri setindeki görsellerin renk tonları ile oynanarak ve eksenlerini çevirerek çoğaltma yapıldı. Learning rate oranı azaltılarak eğitimin epoch sayısında arttırma işlemi gerçekleştirildi.
 
  ![image](https://user-images.githubusercontent.com/59260491/176998907-3ca8df5a-190f-4e04-b77c-31adb82e1f77.png)
 	
@@ -203,7 +203,7 @@ Son olarak confusion matrix’ten elde edilen değerler incelendiğinde kağıt 
 	
 Şekil 31: Confusion matrix değerleri ve kod kısmı
 
-Elde edilecek sonuçları karşılaştırmak amacıyla veri setindeki görsellerden VGG16 algoritması ile öznitelik çıkarımı yapıldı. Öznitelik çıkarımı yapılan veriler SVM(Support Vector Machine)[16] algoritması ile eğitildi ve elde edilen değerler gözlemlendi.
+Elde edilecek sonuçları karşılaştırmak amacıyla veri setindeki görsellerden VGG16 algoritması ile öznitelik çıkarımı yapıldı. Öznitelik çıkarımı yapılan veriler SVM(Support Vector Machine) algoritması ile eğitildi ve elde edilen değerler gözlemlendi.
 
  ![image](https://user-images.githubusercontent.com/59260491/176999428-77adcb66-8607-4547-8aca-5294bd1ca915.png)
 	
@@ -223,7 +223,7 @@ Confusion matrix değerleri incelendiğinde VGG16 ile yapılan eğitim değerler
 
 Hem öznitelik çıkarımının hem de eğitimin VGG16 algoritması ile gerçekleştirilmesinin daha başarılı sonuçlar ortaya çıkardığı görülmüştür. Bu nedenden dolayı VGG16 algoritması ile son yapılan eğitimimiz projenin en başarılı eğitimi olarak kabul edilmiştir ve donanım testleri bu eğitim sonucunda ortaya çıkan ağırlık dosyası ile gerçekleştirilecektir.
 
-Eğitilen modelin farklı donanımlar üzerinde çalışmasını gözlemlemek için Nvidia Jetson Nano geliştirme kartı üzerinde çalışılmaya başlandı. Jetson Nano, Linux sistemi tarafından desteklenmektedir. Kart üzerine takılan sd kart içine Jetpack[15] ile Jetson Nano için kurulum yapılmaktadır. SD kart üzerine yapılan yazma işlemi genel bir bilgisayarda yapılmaktadır. Genel bilgisayarın işletim sistemi önemli değildir.
+Eğitilen modelin farklı donanımlar üzerinde çalışmasını gözlemlemek için Nvidia Jetson Nano geliştirme kartı üzerinde çalışılmaya başlandı. Jetson Nano, Linux sistemi tarafından desteklenmektedir. Kart üzerine takılan sd kart içine Jetpack ile Jetson Nano için kurulum yapılmaktadır. SD kart üzerine yapılan yazma işlemi genel bir bilgisayarda yapılmaktadır. Genel bilgisayarın işletim sistemi önemli değildir.
 
  ![image](https://user-images.githubusercontent.com/59260491/176999444-e24f6698-9e0a-4abe-972c-76bb799e5c70.png)
 	
