@@ -1,4 +1,4 @@
-<h2> DATASET </h2>
+<h2> VERİ SETİ </h2>
  Veri seti için https://github.com/garythung/trashnet adresindeki veriler kullanılmıştır. DataAugmantation.ipynb dosyasında bulunan kodlar ile verilere artırma işlemi uygulanmıştır ve yaklaşık olarak 2 katına çıkarılmıştır.
  
  <h2> PROJENİN YAPIM AŞAMALARI, KARŞILAŞILAN SORUNLAR VE İZLENİLEN YOLLAR </h2>
