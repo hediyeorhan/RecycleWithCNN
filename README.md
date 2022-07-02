@@ -3,17 +3,16 @@
  
  <h2> PROJENİN YAPIM AŞAMALARI, KARŞILAŞILAN SORUNLAR VE İZLENİLEN YOLLAR </h2>
  <h5> Okulda proje dersimiz kapsamında geliştirdiğim projemin yapımı esnasında izlenilen yollar ve planlardan bahsedilecektir. <h5>
-1.	Hafta: Danışman hocam ile birlikte proje konusuna karar verildi. Projeye katılabilecek özgünlükler konuşuldu. Proje Formu dosyasına projenin detayları ile ilgili gerekli bilgiler eklendi ve tekrar danışman hocam ile birlikte incelendi.
 
-2.	Hafta: Projede kullanılabilecek veriler ile ilgili veri seti araştırılması yapıldı. Kaggle sitesi üzerinden ulaşılan veri seti[4] ile github reposu üzerinden ulaşılan veri seti[5] karşılaştırıldı ve değerlendirildi. Github reposu üzerinden ulaşılan verilerin model eğitimi için daha uygun olduğu düşünüldü ve kullanılacak veri seti olarak bu veriler seçildi. Veri setinin seçilmesinde görsellerin arka plan, çözünürlük gibi özellikleri göz önünde bulunduruldu. Verileri kullanmak için gerekli izinler alındı. Verilerin yeterliliğinin değerlendirilmesi için planlama yapıldı. Kullanılacak veri seti 5 kategoriden oluşmaktadır. Kategoriler cam, karton, metal, plastik ve kâğıt türleridir. Her kategorideki veri sayıları yaklaşık olarak birbirine yakındır, toplamda 2392 adet veri bulunmaktadır. 
+Projede kullanılabilecek veriler ile ilgili veri seti araştırılması yapıldı. Kaggle sitesi üzerinden ulaşılan veri seti[4] ile github reposu üzerinden ulaşılan veri seti[5] karşılaştırıldı ve değerlendirildi. Github reposu üzerinden ulaşılan verilerin model eğitimi için daha uygun olduğu düşünüldü ve kullanılacak veri seti olarak bu veriler seçildi. Veri setinin seçilmesinde görsellerin arka plan, çözünürlük gibi özellikleri göz önünde bulunduruldu. Verileri kullanmak için gerekli izinler alındı. Verilerin yeterliliğinin değerlendirilmesi için planlama yapıldı. Kullanılacak veri seti 5 kategoriden oluşmaktadır. Kategoriler cam, karton, metal, plastik ve kâğıt türleridir. Her kategorideki veri sayıları yaklaşık olarak birbirine yakındır, toplamda 2392 adet veri bulunmaktadır. 
 
  ![image](https://user-images.githubusercontent.com/59260491/176998405-1c6d0a2f-2ffc-4a3d-8eb6-54a298ee6c2f.png)
 	
 Şekil 1 : Kullanılan veri setinden örnekler
 
-3.Hafta: Elimizde bulunan veri seti ile CNN [6] modeli eğitildi. YOLO [7] ve SSD [8] algoritmalarının etiketleme ve tespit yönünden gerekli olmadığına karar verildi. CNN algoritmalarının sınıflandırma problemine daha uygun olduğuna karar verildi. Veri setini test etmek amaçlı eğitilen model dosyası test verileri ile test edildi. Veri setinin eğitimine başlamadan önce veri seti %80 train  ve %20 test olmak üzere iki parçaya ayrılmıştır. Veri setini bu şekilde ayırmamızın nedeni, eğitim bittikten sonra oluşan model dosyamızın başarısını ölçmektir. Validation verisi ayırılmadı çünkü gerek duyulmadı. Validation verisi sayesinde eğitim sırasında modelin doğruluk değerleri görülebiliyor fakat burada train verisinin daha fazla olması amaçlanmıştır ve veri seti iki parçaya ayrılmıştır. CNN modelinin iterasyon sayısı, katman sayısı gibi değerlerinin değiştirilmesine ve farklı iterasyonlarda model eğitilmesine karar verildi. Şu anki süreçte CNN üzerinden model eğitimine devam edilecektir. Model doğruluk değeri için iyileştirmeler yapılacaktır. Veri setinin eğitim aşamasında Google Colaboratory [9] ortamı kullanılacaktır çünkü Google ücretsiz olarak GPU [10] desteği sağlamaktadır. Bu sayede eğitimler daha hızlı bir şekilde gerçekleşmektedir.
+Elimizde bulunan veri seti ile CNN [6] modeli eğitildi. YOLO [7] ve SSD [8] algoritmalarının etiketleme ve tespit yönünden gerekli olmadığına karar verildi. CNN algoritmalarının sınıflandırma problemine daha uygun olduğuna karar verildi. Veri setini test etmek amaçlı eğitilen model dosyası test verileri ile test edildi. Veri setinin eğitimine başlamadan önce veri seti %80 train  ve %20 test olmak üzere iki parçaya ayrılmıştır. Veri setini bu şekilde ayırmamızın nedeni, eğitim bittikten sonra oluşan model dosyamızın başarısını ölçmektir. Validation verisi ayırılmadı çünkü gerek duyulmadı. Validation verisi sayesinde eğitim sırasında modelin doğruluk değerleri görülebiliyor fakat burada train verisinin daha fazla olması amaçlanmıştır ve veri seti iki parçaya ayrılmıştır. CNN modelinin iterasyon sayısı, katman sayısı gibi değerlerinin değiştirilmesine ve farklı iterasyonlarda model eğitilmesine karar verildi. Şu anki süreçte CNN üzerinden model eğitimine devam edilecektir. Model doğruluk değeri için iyileştirmeler yapılacaktır. Veri setinin eğitim aşamasında Google Colaboratory [9] ortamı kullanılacaktır çünkü Google ücretsiz olarak GPU [10] desteği sağlamaktadır. Bu sayede eğitimler daha hızlı bir şekilde gerçekleşmektedir.
 
-4.Hafta:  Önceki hafta planlananlar doğrultusunda bir cnn modeli oluşturuldu. Epoch sayısı ilk eğitimde 500 olarak belirlendi. Şekil 2’de oluşturulan modelin katmanlarını inceleyelim.
+Önceki planlananlar doğrultusunda bir cnn modeli oluşturuldu. Epoch sayısı ilk eğitimde 500 olarak belirlendi. Şekil 2’de oluşturulan modelin katmanlarını inceleyelim.
 
 ![image](https://user-images.githubusercontent.com/59260491/176998458-d018da9a-a338-4cb0-b08f-554f2abdd316.png)
 	
@@ -45,7 +44,8 @@ Epoch sayısı fazla arttırıldığı zaman modelin overfittinge uğradığı d
 Şekil 6: 800 epoch sonucu elde edilen değerler
 	
 Grafiklerdeki sonuçlar incelendiğinde 500 epoch ve 800 epoch arasında modeli iyileştirecek derecede bir fark olmadığı görülmüştür. Elde edilen bu sonuçlar doğrultusunda mobilenet algoritması [11] ve vgg algoritması [12] modellerinin kullanılmasına ve sonuçlarının incelenmesine karar verildi.
-5.Hafta:  Geçen haftaki eğitimler sonucunda fazla epoch sayısının overfittinge sebep olduğu düşünüldü ve bu yüzden epoch sayısı 100 olarak güncellendi. Öncelikli olarak 100 epoch ile bir eğitim gerçekleştirildi. Gerçekleştirilen eğitim sonucunda test loss değeri 1.985 ve test accuracy değeri 0.6860 olarak elde edildi. Şekil 7’te eğitim sonucunda elde edilen confusion matrix [13] verilerini inceleyelim. Confusion matrix makine öğrenimi alanında ve özellikle istatistiksel sınıflandırma probleminde, bir hata matrisi olarak da bilinen bir karışıklık matrisi, tipik olarak denetimli bir öğrenme algoritması olan bir algoritmanın performansının görselleştirilmesine izin veren özel bir tablo düzenidir.
+	
+Son eğitimler sonucunda fazla epoch sayısının overfittinge sebep olduğu düşünüldü ve bu yüzden epoch sayısı 100 olarak güncellendi. Öncelikli olarak 100 epoch ile bir eğitim gerçekleştirildi. Gerçekleştirilen eğitim sonucunda test loss değeri 1.985 ve test accuracy değeri 0.6860 olarak elde edildi. Şekil 7’te eğitim sonucunda elde edilen confusion matrix [13] verilerini inceleyelim. Confusion matrix makine öğrenimi alanında ve özellikle istatistiksel sınıflandırma probleminde, bir hata matrisi olarak da bilinen bir karışıklık matrisi, tipik olarak denetimli bir öğrenme algoritması olan bir algoritmanın performansının görselleştirilmesine izin veren özel bir tablo düzenidir.
 
 ![image](https://user-images.githubusercontent.com/59260491/176998631-10d9e035-e5c0-4978-a903-999d1b238189.png)
  
@@ -110,7 +110,7 @@ Doğruluk (Accuracy) yerine F1 Score değerinin kullanılmasının en temel sebe
 	
 Şekil 14: MobileNet eğitimden elde edilen confusion matrix        
 	
-6.Hafta:  Önceki haftalarda mobilenet algoritmasından sonraki hedef vgg16 algoritması ile eğitim yapmaktı. Bu hafta vgg16 modelini kullanılarak bir eğitim gerçekleştirildi.
+Önceki haftalarda mobilenet algoritmasından sonraki hedef vgg16 algoritması ile eğitim yapmaktı. Bu hafta vgg16 modelini kullanılarak bir eğitim gerçekleştirildi.
 Vgg16 basit bir ağ modeli olup öncesindeki modellerden en önemli farkı evrişim katmanlarının 2’li ya da 3’lü kullanılmasıdır. Tam bağlantı (FC) katmanında 7x7x512=4096 nöronlu bir öznitelik vektörüne dönüştürülür. İki FC katmanı çıkışında 1000 sınıflı softmax başarımı hesaplanır. 
 
  ![image](https://user-images.githubusercontent.com/59260491/176998792-fff8eff2-04f1-4a4b-bbe6-8ad91a5ba9df.png)
@@ -135,7 +135,7 @@ Grafiklerde görüldüğü üzere validation loss değeri artmıştır. Bunun se
 	
 Confusion matrix verilerine bakıldığında aslında güzel sonuçlar olduğu görülmektedir. Fakat test verilerinde karşılaşılan sınıflandırma hataları tolere edilebilecek bir seviyede değildir. Bu sebepten dolayı modeli iyileştirme çalışmalarına devam edilecek ve validation loss değerinin artması problemine çözüm bulunacaktır.
 
-7.Hafta: Bu zamana kadar yapılan tüm eğitimler karşılaştırıldığında vgg16 modelinin eğitiminin mobilenet eğitimden daha iyi olduğu görülmüştür. Veri setinin test bölümünden kendi seçtiğimiz veriler bir liste yardımı ile tahmin edildi. Eğitim sonucunda elde edilen değerlerin yeterliliği değerlendirildi. Overfitting problemi yaşanmaması için eğitim 15 epoch’da tamamlandı. Elde edilen test accuracy değeri 0.754677.
+Bu zamana kadar yapılan tüm eğitimler karşılaştırıldığında vgg16 modelinin eğitiminin mobilenet eğitimden daha iyi olduğu görülmüştür. Veri setinin test bölümünden kendi seçtiğimiz veriler bir liste yardımı ile tahmin edildi. Eğitim sonucunda elde edilen değerlerin yeterliliği değerlendirildi. Overfitting problemi yaşanmaması için eğitim 15 epoch’da tamamlandı. Elde edilen test accuracy değeri 0.754677.
 
  ![image](https://user-images.githubusercontent.com/59260491/176998875-dd328e56-0ff3-4092-bcfb-ba6397d56282.png)
 	
@@ -145,7 +145,7 @@ Confusion matrix verilerine bakıldığında aslında güzel sonuçlar olduğu g
 	
 Şekil 20: VGG ile 15 epoch sonucunda elde edilen loss ve accuracy değerleri
 
-8.Hafta: Projenin donanım aşamasında elimizde bulunan imkanlar dahilinde beş sınıf ile sınıflandırma yapmak ve bunu uygulamak biraz daha karmaşık ve zor olacağından dolayı projedeki sınıf/kategori sayısı üç sınıf ile sınırlandırıldı. Cam, kağıt ve plastik kategorilerinden oluşan üç sınıf ile vgg16 modeli kullanılarak bir eğitim daha gerçekleştirildi. Hatalı sınıflandırmaların azaldığı görüldü. Üç sınıf ile 50 epoch eğitim yapıldı. Elde edilen test accuracy değeri 0.81.
+Projenin donanım aşamasında elimizde bulunan imkanlar dahilinde beş sınıf ile sınıflandırma yapmak ve bunu uygulamak biraz daha karmaşık ve zor olacağından dolayı projedeki sınıf/kategori sayısı üç sınıf ile sınırlandırıldı. Cam, kağıt ve plastik kategorilerinden oluşan üç sınıf ile vgg16 modeli kullanılarak bir eğitim daha gerçekleştirildi. Hatalı sınıflandırmaların azaldığı görüldü. Üç sınıf ile 50 epoch eğitim yapıldı. Elde edilen test accuracy değeri 0.81.
  
 ![image](https://user-images.githubusercontent.com/59260491/176998889-4b55c68a-ed18-4d1d-b7b3-7549f49da7e1.png)
 	
@@ -155,7 +155,7 @@ Confusion matrix verilerine bakıldığında aslında güzel sonuçlar olduğu g
 	
 Şekil 22: Eğitim sonucunda elde edilen loss ve accuracy değerleri
 	
-9.Hafta: Overfitting sorununa çözüm bulmak amacıyla araştırmalar yapıldı. Araştırmalar sonucunda bulunan çözümler; cnn katmanlarındaki gizli katman sayısını azaltmak, veri artırma, katmanlarda L1 ve L2 [14] normalizasyon işlemi, dropout katmanı eklemek, learning rate oranını azaltmak. Bulunan bu çözümler aşamalı olarak önceki eğitim dosyalarında denendi. Doğruluk değerleri uygun olan modeller üzerinde inceleme yapıldı ve geliştirilmek üzere tekrar eğitimler gerçekleştirildi. Veri artırma işlemi sonucunda her kategorideki verilerin sayısı yaklaşık olarak iki katına çıkarıldı. Veri setindeki görsellerin renk tonları ile oynanarak ve eksenlerini çevirerek çoğaltma yapıldı. Learning rate oranı azaltılarak eğitimin epoch sayısında arttırma işlemi gerçekleştirildi.
+Overfitting sorununa çözüm bulmak amacıyla araştırmalar yapıldı. Araştırmalar sonucunda bulunan çözümler; cnn katmanlarındaki gizli katman sayısını azaltmak, veri artırma, katmanlarda L1 ve L2 [14] normalizasyon işlemi, dropout katmanı eklemek, learning rate oranını azaltmak. Bulunan bu çözümler aşamalı olarak önceki eğitim dosyalarında denendi. Doğruluk değerleri uygun olan modeller üzerinde inceleme yapıldı ve geliştirilmek üzere tekrar eğitimler gerçekleştirildi. Veri artırma işlemi sonucunda her kategorideki verilerin sayısı yaklaşık olarak iki katına çıkarıldı. Veri setindeki görsellerin renk tonları ile oynanarak ve eksenlerini çevirerek çoğaltma yapıldı. Learning rate oranı azaltılarak eğitimin epoch sayısında arttırma işlemi gerçekleştirildi.
 
  ![image](https://user-images.githubusercontent.com/59260491/176998907-3ca8df5a-190f-4e04-b77c-31adb82e1f77.png)
 	
@@ -174,13 +174,13 @@ Confusion matrix verilerine bakıldığında aslında güzel sonuçlar olduğu g
 Şekil 26: Elde edilen test doğruluk değerleri
 
 
-10.Hafta: Veri arttırma yönteminden elde edilen verilerin nasıl daha iyi eğitilebileceğine dair üzerinde düşünüldü. Önceki haftalarda yapılan eğitimler incelendi. Eğitimlere yönelik alınan notlar incelendi ve en iyi sonuç veren eğitimlerin farklı parametreler ile tekrar eğitilmesine karar verildi. Önceki eğitimlerde veri setini train ve test olarak ayırma işlemi el ile seçilerek yapılmıştı. Bu işlem yeni eğitimlere geçilmeden önce python kodu ile gerçekleştirildi. Python kodu ile train ve test olarak ayırılan veri seti yeni eğitimler için hazır hale getirildi.
+Veri arttırma yönteminden elde edilen verilerin nasıl daha iyi eğitilebileceğine dair üzerinde düşünüldü. Önceki haftalarda yapılan eğitimler incelendi. Eğitimlere yönelik alınan notlar incelendi ve en iyi sonuç veren eğitimlerin farklı parametreler ile tekrar eğitilmesine karar verildi. Önceki eğitimlerde veri setini train ve test olarak ayırma işlemi el ile seçilerek yapılmıştı. Bu işlem yeni eğitimlere geçilmeden önce python kodu ile gerçekleştirildi. Python kodu ile train ve test olarak ayırılan veri seti yeni eğitimler için hazır hale getirildi.
  
 ![image](https://user-images.githubusercontent.com/59260491/176998949-a206220d-440d-4659-a720-8f2805d9f624.png)
 	
 Şekil 27: Train ve test olarak ayırma - Python kodu
 
-11.Hafta: Önceki haftalarda en iyi eğitim sonucunu veren parametreler kullanılarak veri setinin son hali eğitildi. Eğitimde kullanılan verilerin giriş boyutu 224 olarak ayarlandı. VGG16 algoritması imagenet ağırlıkları ile eğitildi. Eğitim birkaç kez tekrarlandı ve 40 epoch değerinin yeterli olacağı düşünüldü. 
+Önceki haftalarda en iyi eğitim sonucunu veren parametreler kullanılarak veri setinin son hali eğitildi. Eğitimde kullanılan verilerin giriş boyutu 224 olarak ayarlandı. VGG16 algoritması imagenet ağırlıkları ile eğitildi. Eğitim birkaç kez tekrarlandı ve 40 epoch değerinin yeterli olacağı düşünüldü. 
 
 ![image](https://user-images.githubusercontent.com/59260491/176998966-e952c998-47e3-45a5-bd59-6d6b5eac4228.png)
 	
@@ -223,7 +223,7 @@ Confusion matrix değerleri incelendiğinde VGG16 ile yapılan eğitim değerler
 
 Hem öznitelik çıkarımının hem de eğitimin VGG16 algoritması ile gerçekleştirilmesinin daha başarılı sonuçlar ortaya çıkardığı görülmüştür. Bu nedenden dolayı VGG16 algoritması ile son yapılan eğitimimiz projenin en başarılı eğitimi olarak kabul edilmiştir ve donanım testleri bu eğitim sonucunda ortaya çıkan ağırlık dosyası ile gerçekleştirilecektir.
 
-12.Hafta:  Eğitilen modelin farklı donanımlar üzerinde çalışmasını gözlemlemek için Nvidia Jetson Nano geliştirme kartı üzerinde çalışılmaya başlandı. Jetson Nano, Linux sistemi tarafından desteklenmektedir. Kart üzerine takılan sd kart içine Jetpack[15] ile Jetson Nano için kurulum yapılmaktadır. SD kart üzerine yapılan yazma işlemi genel bir bilgisayarda yapılmaktadır. Genel bilgisayarın işletim sistemi önemli değildir.
+Eğitilen modelin farklı donanımlar üzerinde çalışmasını gözlemlemek için Nvidia Jetson Nano geliştirme kartı üzerinde çalışılmaya başlandı. Jetson Nano, Linux sistemi tarafından desteklenmektedir. Kart üzerine takılan sd kart içine Jetpack[15] ile Jetson Nano için kurulum yapılmaktadır. SD kart üzerine yapılan yazma işlemi genel bir bilgisayarda yapılmaktadır. Genel bilgisayarın işletim sistemi önemli değildir.
 
  ![image](https://user-images.githubusercontent.com/59260491/176999444-e24f6698-9e0a-4abe-972c-76bb799e5c70.png)
 	
@@ -233,7 +233,7 @@ Jetson Nano kartına Jetpack ile birlikte TensorRT, Linux, cuDNN, Cuda, güvenli
 
 
 
-13.Hafta: Eğitim sonucunda elde edilen model dosyasının testi için Python programlama dilinde yazılmış bir script kullanılacaktır. Test aşamasını gerçekleştirmek için Jetson Nano içinde OpenCV, Keras, Tensorflow kütüphaneleri bulunmalıdır. Keras ve Tensorflow kütüphaneleri eğitilen model dosyasının okunmasını sağlayacaktır. OpenCV kütüphanesi ile test için ayrılan görseller üzerinde işlemler yapılacaktır ve sonucun ekranda görünmesi sağlanacaktır. Gerekli kütüphaneler için kurulum gerçekleştirilmiştir. Şekil 36’da Keras kütüphanesinin Jetson Nano üzerinde kurulum aşaması bulunmaktadır.
+Eğitim sonucunda elde edilen model dosyasının testi için Python programlama dilinde yazılmış bir script kullanılacaktır. Test aşamasını gerçekleştirmek için Jetson Nano içinde OpenCV, Keras, Tensorflow kütüphaneleri bulunmalıdır. Keras ve Tensorflow kütüphaneleri eğitilen model dosyasının okunmasını sağlayacaktır. OpenCV kütüphanesi ile test için ayrılan görseller üzerinde işlemler yapılacaktır ve sonucun ekranda görünmesi sağlanacaktır. Gerekli kütüphaneler için kurulum gerçekleştirilmiştir. Şekil 36’da Keras kütüphanesinin Jetson Nano üzerinde kurulum aşaması bulunmaktadır.
 
  ![image](https://user-images.githubusercontent.com/59260491/176999452-8680532b-0778-43f1-9755-b463ada03fdb.png)
 	
@@ -260,7 +260,7 @@ Kullanılan Jetson Nano donanımı ve çalışma ortamı Şekil 39’da gösteri
 Şekil 39: Kullanılan donanım Jetson Nano
 
 
-14.Hafta: Kütüphane kurulumları gerçekleştirildikten sonra test aşamasına geçilmiştir. Test için ayrılmış veriler ile test işlemleri gerçekleştirilmiştir ve bazıları incelenmek üzere görselleştirilmiştir. Görselleştirilen test verileri ve kodun çalışma aşamasını inceleyelim. 
+Kütüphane kurulumları gerçekleştirildikten sonra test aşamasına geçilmiştir. Test için ayrılmış veriler ile test işlemleri gerçekleştirilmiştir ve bazıları incelenmek üzere görselleştirilmiştir. Görselleştirilen test verileri ve kodun çalışma aşamasını inceleyelim. 
 
 
  ![image](https://user-images.githubusercontent.com/59260491/176999516-97605f8b-5ee2-4cfc-afa0-6ac262bfe3f7.png)
