@@ -198,67 +198,79 @@ Eğitim sonucunda %90 doğruluk değeri elde edilmiştir. Kayıp değeri ise %26
 Şekil 30: Loss ve accuracy değerleri
 
 Son olarak confusion matrix’ten elde edilen değerler incelendiğinde kağıt sınıfı için %96, plastik sınıfı için %85 ve cam sınıfı için %88 f1-score değerleri elde edilmiştir. Doğruluk değerleri de yaklaşık olarak bu değerler ile eşdeğerdir.
- 
+	
+ ![image](https://user-images.githubusercontent.com/59260491/176999419-0bf6c0ba-e05e-4b99-8315-d05893cc4dda.png)
+	
 Şekil 31: Confusion matrix değerleri ve kod kısmı
 
 Elde edilecek sonuçları karşılaştırmak amacıyla veri setindeki görsellerden VGG16 algoritması ile öznitelik çıkarımı yapıldı. Öznitelik çıkarımı yapılan veriler SVM(Support Vector Machine)[16] algoritması ile eğitildi ve elde edilen değerler gözlemlendi.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176999428-77adcb66-8607-4547-8aca-5294bd1ca915.png)
+	
 Şekil 32: SVM ile gerçekleştirilen eğitim
 
 Öznitelik çıkarımı VGG16 ile yapılan eğitimde yaklaşık olarak %74 doğruluk elde edildi.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176999434-fe570629-ffd0-4057-a532-89c1461cd70f.png)
+	
 Şekil 33: Eğitim sonucunda elde edilen doğruluk değeri
+	
 Confusion matrix değerleri incelendiğinde VGG16 ile yapılan eğitim değerlerinin daha başarılı olduğu görülmüştür. 
  
+![image](https://user-images.githubusercontent.com/59260491/176999439-b194df54-fbd5-45d3-bebb-b722a50ebd75.png)
+	
 Şekil 34: SVM eğitimi confusion matrix değerleri
 
 Hem öznitelik çıkarımının hem de eğitimin VGG16 algoritması ile gerçekleştirilmesinin daha başarılı sonuçlar ortaya çıkardığı görülmüştür. Bu nedenden dolayı VGG16 algoritması ile son yapılan eğitimimiz projenin en başarılı eğitimi olarak kabul edilmiştir ve donanım testleri bu eğitim sonucunda ortaya çıkan ağırlık dosyası ile gerçekleştirilecektir.
 
-12.	Hafta:  Eğitilen modelin farklı donanımlar üzerinde çalışmasını gözlemlemek için Nvidia Jetson Nano geliştirme kartı üzerinde çalışılmaya başlandı. Jetson Nano, Linux sistemi tarafından desteklenmektedir. Kart üzerine takılan sd kart içine Jetpack[15] ile Jetson Nano için kurulum yapılmaktadır. SD kart üzerine yapılan yazma işlemi genel bir bilgisayarda yapılmaktadır. Genel bilgisayarın işletim sistemi önemli değildir.
+12.Hafta:  Eğitilen modelin farklı donanımlar üzerinde çalışmasını gözlemlemek için Nvidia Jetson Nano geliştirme kartı üzerinde çalışılmaya başlandı. Jetson Nano, Linux sistemi tarafından desteklenmektedir. Kart üzerine takılan sd kart içine Jetpack[15] ile Jetson Nano için kurulum yapılmaktadır. SD kart üzerine yapılan yazma işlemi genel bir bilgisayarda yapılmaktadır. Genel bilgisayarın işletim sistemi önemli değildir.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176999444-e24f6698-9e0a-4abe-972c-76bb799e5c70.png)
+	
 Şekil 35: Nvidia Jetson Nano Geliştirici Kartı
 
 Jetson Nano kartına Jetpack ile birlikte TensorRT, Linux, cuDNN, Cuda, güvenlik, geliştirici araçları, bilgisayarlı görü destekleri sağlanmaktadır. 
 
 
 
-13.	Hafta: Eğitim sonucunda elde edilen model dosyasının testi için Python programlama dilinde yazılmış bir script kullanılacaktır. Test aşamasını gerçekleştirmek için Jetson Nano içinde OpenCV, Keras, Tensorflow kütüphaneleri bulunmalıdır. Keras ve Tensorflow kütüphaneleri eğitilen model dosyasının okunmasını sağlayacaktır. OpenCV kütüphanesi ile test için ayrılan görseller üzerinde işlemler yapılacaktır ve sonucun ekranda görünmesi sağlanacaktır. Gerekli kütüphaneler için kurulum gerçekleştirilmiştir. Şekil 36’da Keras kütüphanesinin Jetson Nano üzerinde kurulum aşaması bulunmaktadır.
+13.Hafta: Eğitim sonucunda elde edilen model dosyasının testi için Python programlama dilinde yazılmış bir script kullanılacaktır. Test aşamasını gerçekleştirmek için Jetson Nano içinde OpenCV, Keras, Tensorflow kütüphaneleri bulunmalıdır. Keras ve Tensorflow kütüphaneleri eğitilen model dosyasının okunmasını sağlayacaktır. OpenCV kütüphanesi ile test için ayrılan görseller üzerinde işlemler yapılacaktır ve sonucun ekranda görünmesi sağlanacaktır. Gerekli kütüphaneler için kurulum gerçekleştirilmiştir. Şekil 36’da Keras kütüphanesinin Jetson Nano üzerinde kurulum aşaması bulunmaktadır.
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176999452-8680532b-0778-43f1-9755-b463ada03fdb.png)
+	
 Şekil 36: Keras kütüphanesi kurulumu
 
 
 
 OpenCV kütüphanesinin kurulumundan sonra kütüphanenin donanım üzerindeki özellikleri Şekil 37 ve Şekil 38’de incelenmiştir.
- 
+	
+ ![image](https://user-images.githubusercontent.com/59260491/176999468-6f30e666-5c48-4654-a4da-59ad8a8d5e50.png)
+	
 Şekil 37: OpenCV kütüphanesi özellikleri
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176999487-20a509fe-457e-44c6-9076-eb26fb9d4741.png)
+	
 Şekil 38: OpenCV kütüphanesi özellikleri
 
 
 
 Kullanılan Jetson Nano donanımı ve çalışma ortamı Şekil 39’da gösterilmiştir.
   
+![image](https://user-images.githubusercontent.com/59260491/176999503-3b69dcfe-5d81-4819-a66f-5a74f81187a2.png)
+	
 Şekil 39: Kullanılan donanım Jetson Nano
 
 
-14.	Hafta: Kütüphane kurulumları gerçekleştirildikten sonra test aşamasına geçilmiştir. Test için ayrılmış veriler ile test işlemleri gerçekleştirilmiştir ve bazıları incelenmek üzere görselleştirilmiştir. Görselleştirilen test verileri ve kodun çalışma aşamasını inceleyelim. 
+14.Hafta: Kütüphane kurulumları gerçekleştirildikten sonra test aşamasına geçilmiştir. Test için ayrılmış veriler ile test işlemleri gerçekleştirilmiştir ve bazıları incelenmek üzere görselleştirilmiştir. Görselleştirilen test verileri ve kodun çalışma aşamasını inceleyelim. 
 
 
- 
+ ![image](https://user-images.githubusercontent.com/59260491/176999516-97605f8b-5ee2-4cfc-afa0-6ac262bfe3f7.png)
+	
 Şekil 40: Test kodunun çalışma aşaması ve kod
 
 
- 	 
-	
- 	 
-	
+ SONUÇLAR
  
-
+![image](https://user-images.githubusercontent.com/59260491/176999524-05271b5b-4a6b-49c4-98b2-74d6da60fff1.png)
 	 
 Şekil 41: Test sonucunda elde edilen veriler
 
